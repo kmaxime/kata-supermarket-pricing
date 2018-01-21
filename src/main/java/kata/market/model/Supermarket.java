@@ -1,6 +1,8 @@
 package kata.market.model;
 
 import io.vavr.Tuple2;
+import kata.market.pricing.DefaultPricing;
+import kata.market.pricing.PackagePricing;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

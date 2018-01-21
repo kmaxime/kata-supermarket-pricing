@@ -1,9 +1,10 @@
-package kata.market.model;
+package kata.market.pricing;
 
 import io.vavr.Tuple;
 import io.vavr.Tuple2;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
+import kata.market.model.Item;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 

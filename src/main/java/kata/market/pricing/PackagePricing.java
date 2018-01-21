@@ -1,5 +1,6 @@
-package kata.market.model;
+package kata.market.pricing;
 
+import kata.market.model.Item;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

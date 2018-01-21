@@ -21,7 +21,7 @@ The exercise is to experiment with a model that is flexible enough to deal with 
 
 
 
-#Implementation choices
+##Implementation choices
 In this supermarket, you can buy whatever you wish. there is no stock management, as it was not specified in the subject.
 
 Basically, A customer has got a cart, and is free to buy whatever items he wants, which are then added to the cart. When the customer doesn't need anything else, he goes to the supermarket checkout, which is in charge of calculating the bill incrementally, according to each item found in the cart.

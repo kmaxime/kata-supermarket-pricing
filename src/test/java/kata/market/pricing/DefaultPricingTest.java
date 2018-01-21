@@ -1,5 +1,6 @@
-package kata.market.model;
+package kata.market.pricing;
 
+import kata.market.model.Item;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
