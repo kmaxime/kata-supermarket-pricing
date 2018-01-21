@@ -1,39 +1,38 @@
 package kata.market.model;
-import java.util.LinkedHashMap;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import java.util.LinkedHashMap;
+
+import static io.vavr.API.*;
 
 @Data
-@NoArgsConstructor
-public class Customer {
+class Customer {
     private Supermarket supermarket;
     private LinkedHashMap cart = new LinkedHashMap<Item, Float>();
-    public void addToCart(Item item, float number)
-    {
-        if(cart.containsKey(item))
-        {
-            cart.put(item, number+ (Float) cart.get(item));
+
+    void addToCart(Item item, float numberToBuy) {
+        if (cart.containsKey(item)) {
+            if(item.isByWeight() && (numberToBuy - (int) numberToBuy) != 0)
+            {
+                throw new RuntimeException("Error case: you cannot buy half an item !");
+            }
+            else
+            {
+                cart.put(item, numberToBuy + (Float) cart.get(item));
+            }
         }
         else
         {
-            cart.put(item, number);
+            cart.put(item, numberToBuy);
         }
     }
-    public void removeFromCart(Item item, float number)
-    {
-        if(cart.containsKey(item))
+
+    void removeFromCart(Item item, float number) {
+        if (cart.containsKey(item))
         {
-            float numberInitial =(Float)cart.get(item);
-            float result = numberInitial - number;
-            if( result > 0)
-            {
-                cart.replace(item, (Float) cart.get(item)-number);
-            }
-            else //As it is not mentioned in the kata subject, no exception is processed for removing more than the actual number of goods in the cart
-            {
-                cart.remove(item);
-            }
+            Match((Float) cart.get(item) - number).of(
+                    Case($(n -> n > 0), () -> cart.replace(item, (Float) cart.get(item) - number)),
+                    Case($(), () -> cart.remove(item)));
         }
     }
 
